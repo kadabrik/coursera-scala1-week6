@@ -35,7 +35,7 @@ object Anagrams {
    *  Note: you must use `groupBy` to implement this method!
    */
   def wordOccurrences(w: Word): Occurrences = {
-    w.groupBy(ch => ch.toLower).map({case (k, v) => (k, v.length)}).toList.sortWith(_._2 > _._2)
+    w.groupBy(ch => ch.toLower).map({case (k, v) => (k, v.length)}).toList.sortWith(_._1 < _._1)
   }
 
   /** Converts a sentence into its character occurrence list. */
@@ -117,7 +117,7 @@ object Anagrams {
       occs + (ch -> (occs(ch) - num))
     }
 
-    (ym foldLeft xm)(subOcc).toList.filter(pair => pair._2 > 0).sortWith(_._2 > _._2)
+    (ym foldLeft xm)(subOcc).toList.filter(pair => pair._2 > 0).sortWith(_._1 < _._1)
   }
 
   /** Returns a list of all anagram sentences of the given sentence.
@@ -161,6 +161,8 @@ object Anagrams {
    *  Note: There is only one anagram of an empty sentence.
    */
   def sentenceAnagrams(sentence: Sentence): List[Sentence] = {
+    val senOcc = sentenceOccurrences(sentence)
 
+    List(List())
   }
 }

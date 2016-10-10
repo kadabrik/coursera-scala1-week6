@@ -1,6 +1,6 @@
 val word: String = "HelloWOrld"
 
-word.groupBy(ch => ch.toLower).map({case (k, v) => (k, v.length)}).toList.sortWith(_._2 > _._2)
+word.groupBy(ch => ch.toLower).map({case (k, v) => (k, v.length)}).toList.sortWith(_._1 < _._1)
 
 val occur = List(('a', 2), ('b', 2))
 
